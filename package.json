@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "bdd-stdin": "^0.2.0",
-    "bluebird": "^3.7.1"
+    "bluebird": "^3.7.1",
+    "request": "^2.81.0"
   }
 }

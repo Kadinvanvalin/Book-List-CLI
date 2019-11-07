@@ -8,7 +8,7 @@ describe("UI", function() {
   let log;
 
   beforeEach(function() {
-    log = sinon.spy(UI, "log");
+    log = sinon.stub(UI, "log");
   });
 
   afterEach(function() {
@@ -24,6 +24,15 @@ describe("UI", function() {
         done();
       });
     });
+
+    // it("should prompt the user for a book search when the user types query", function(done) {
+    //   mockedUserInput("query");
+    //   const printGoogleRequestStub = sinon.stub(UI, "printGoogleRequest");
+    //   UI.printWelcome().then(function() {
+    //     expect(printGoogleRequestStub.called).to.be.equal(true);
+    //     done();
+    //   });
+    // });
   });
 
   describe("UI#ask", function() {
