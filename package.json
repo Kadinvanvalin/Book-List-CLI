@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +13,10 @@
     "chai": "^4.2.0",
     "mocha": "^6.2.2",
     "sinon": "^7.5.0"
+  },
+  "dependencies": {
+    "bdd-stdin": "^0.2.0",
+    "bluebird": "^3.7.1",
+    "request": "^2.81.0"
   }
 }
