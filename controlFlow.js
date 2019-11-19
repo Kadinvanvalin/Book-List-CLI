@@ -34,7 +34,7 @@ const ControlFlow = {
       {
         matches: () => true,
         execute: () => {
-          UI.log("I didn't understand that command");
+          UI.commandNotFoundMainMenu();
           app.run();
         }
       }
@@ -51,14 +51,14 @@ const ControlFlow = {
       {
         matches: input => app.alreadyOnShelf(app.browsing[input - 1]),
         execute: async () => {
-          UI.log("You have already saved that book, select a different book or exit");
-          this.showBookOptions();
+          UI.bookNotSaved();
+          app.showBookOptions();
         }
       },
       {
         matches: input => !app.inRange(+input),
         execute: async () => {
-          UI.log("That is not a valid option, please select a book, or exit");
+          UI.commandNotFoundBookSelection();
           app.showBookOptions();
         }
       },
