@@ -21,8 +21,7 @@ const UI = {
   },
   makeBookSelection(books) {
     books.forEach((book, index) => {
-      this.log(`${index + 1})`);
-      this.renderBook(book);
+      this.renderBook(book, index);
     });
     return this.ask(this.saveBookText());
   },
@@ -46,10 +45,10 @@ const UI = {
   emptyShelf() {
     this.log(this.emptyShelfText());
   },
-  renderBook(book) {
-    this.log(`  Title: ${book.title}`);
-    this.log(`  Author: ${book.authors}`);
-    this.log(`  Publisher: ${book.publisher}`);
+  renderBook(book, index) {
+    this.log(`${index + 1}) Title: ${book.title}`);
+    this.log(`   Author: ${book.authors}`);
+    this.log(`   Publisher: ${book.publisher}`);
   }
 };
 

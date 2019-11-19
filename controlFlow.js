@@ -24,8 +24,7 @@ const ControlFlow = {
             return;
           }
           app.shelf.forEach((book, index) => {
-            UI.log(`${index + 1})`);
-            UI.renderBook(book);
+            UI.renderBook(book, index);
           });
           app.run();
         }
