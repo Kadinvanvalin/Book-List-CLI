@@ -12,8 +12,7 @@ const ControlFlow = {
         matches: input => input === "query",
         execute: async () => {
           app.browsing = await UI.makeGoogleRequest();
-          const command = await UI.makeBookSelection(app.browsing);
-          app.respondToUserInput(command, app.bookSelectionCommands);
+          app.showBookOptions();
         }
       },
       {
@@ -51,19 +50,15 @@ const ControlFlow = {
       {
         matches: input => app.alreadyOnShelf(app.browsing[input - 1]),
         execute: async () => {
-          UI.log(
-            "You have already saved that book, select a different book or exit"
-          );
-          const command = await UI.makeBookSelection(app.browsing);
-          app.respondToUserInput(command, app.bookSelectionCommands);
+          UI.log("You have already saved that book, select a different book or exit");
+          this.showBookOptions();
         }
       },
       {
         matches: input => !app.inRange(+input),
         execute: async () => {
           UI.log("That is not a valid option, please select a book, or exit");
-          const command = await UI.makeBookSelection(app.browsing);
-          app.respondToUserInput(command, app.bookSelectionCommands);
+          app.showBookOptions();
         }
       },
       {

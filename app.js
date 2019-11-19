@@ -17,6 +17,11 @@ class App {
     commands.find(command => command.matches(input)).execute(input);
   }
 
+  showBookOptions() { 
+    const command = await UI.makeBookSelection(this.browsing);
+    this.respondToUserInput(command, this.bookSelectionCommands);
+  }
+
   alreadyOnShelf(checkedOutBook) {
     function compare(bookOnShelf) {
       for (var property in checkedOutBook) {
