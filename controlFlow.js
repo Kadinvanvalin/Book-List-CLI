@@ -1,3 +1,4 @@
+const GoogleClient = require("./googleClient");
 const ControlFlow = {
   menuCommands: (app, UI) => {
     return [
@@ -11,7 +12,8 @@ const ControlFlow = {
       {
         matches: input => input === "query",
         execute: async () => {
-          app.browsing = await UI.makeGoogleRequest();
+          const request = await UI.makeGoogleRequest();
+          app.browsing =  await GoogleClient.queryForBooks(request);
           app.showBookOptions();
         }
       },

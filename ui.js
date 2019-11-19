@@ -15,9 +15,8 @@ const UI = {
   printWelcome() {
     return this.ask(this.menuText());
   },
-  async makeGoogleRequest() {
-    const response = await this.ask(this.searchText());
-    return await GoogleClient.queryForBooks(response);
+  makeGoogleRequest() {
+    return this.ask("please type your search term and press enter.");
   },
   makeBookSelection(books) {
     books.forEach((book, index) => {

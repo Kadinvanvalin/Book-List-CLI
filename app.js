@@ -17,7 +17,7 @@ class App {
     commands.find(command => command.matches(input)).execute(input);
   }
 
-  showBookOptions() { 
+  async showBookOptions() { 
     const command = await UI.makeBookSelection(this.browsing);
     this.respondToUserInput(command, this.bookSelectionCommands);
   }
