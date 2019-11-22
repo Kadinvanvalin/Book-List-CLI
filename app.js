@@ -13,8 +13,13 @@ class App {
     this.respondToUserInput(input, this.menuCommands);
   }
 
-  async respondToUserInput(input, commands) {
+  respondToUserInput(input, commands) {
     commands.find(command => command.matches(input)).execute(input);
+  }
+
+  async showBookOptions() { 
+    const command = await UI.makeBookSelection(this.browsing);
+    this.respondToUserInput(command, this.bookSelectionCommands);
   }
 
   alreadyOnShelf(checkedOutBook) {

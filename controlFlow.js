@@ -1,3 +1,4 @@
+const GoogleClient = require("./googleClient");
 const ControlFlow = {
   menuCommands: (app, UI) => {
     return [
@@ -11,9 +12,9 @@ const ControlFlow = {
       {
         matches: input => input === "query",
         execute: async () => {
-          app.browsing = await UI.makeGoogleRequest();
-          const command = await UI.makeBookSelection(app.browsing);
-          app.respondToUserInput(command, app.bookSelectionCommands);
+          const request = await UI.makeGoogleRequest();
+          app.browsing =  await GoogleClient.queryForBooks(request);
+          app.showBookOptions();
         }
       },
       {
@@ -25,8 +26,7 @@ const ControlFlow = {
             return;
           }
           app.shelf.forEach((book, index) => {
-            UI.log(`${index + 1})`);
-            UI.renderBook(book);
+            UI.renderBook(book, index);
           });
           app.run();
         }
@@ -34,7 +34,7 @@ const ControlFlow = {
       {
         matches: () => true,
         execute: () => {
-          UI.log("I didn't understand that command");
+          UI.commandNotFoundMainMenu();
           app.run();
         }
       }
@@ -51,19 +51,15 @@ const ControlFlow = {
       {
         matches: input => app.alreadyOnShelf(app.browsing[input - 1]),
         execute: async () => {
-          UI.log(
-            "You have already saved that book, select a different book or exit"
-          );
-          const command = await UI.makeBookSelection(app.browsing);
-          app.respondToUserInput(command, app.bookSelectionCommands);
+          UI.bookNotSaved();
+          app.showBookOptions();
         }
       },
       {
         matches: input => !app.inRange(+input),
         execute: async () => {
-          UI.log("That is not a valid option, please select a book, or exit");
-          const command = await UI.makeBookSelection(app.browsing);
-          app.respondToUserInput(command, app.bookSelectionCommands);
+          UI.commandNotFoundBookSelection();
+          app.showBookOptions();
         }
       },
       {
