@@ -6,6 +6,7 @@ class Book {
     this.authors = Book.normalizeField(googleResponse.authors) || "unknown";
     this.publisher = Book.normalizeField(googleResponse.publisher) || "unknown";
   }
+
   static normalizeField(input) {
     return Array.isArray(input) ? input.join(", ") : input;
   }
